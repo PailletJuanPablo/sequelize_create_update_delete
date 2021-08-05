@@ -24,12 +24,7 @@ module.exports = (sequelize, dataTypes) => {
     };
     let config = {
         tableName: 'movies',
-       // timestamps: false,
-        paranoid: true,
-        deletedAt: 'deleted_at',
-        underscored: true
-
-
+        timestamps: false
     };
     const Movie = sequelize.define(alias, cols, config)
 
