@@ -18,5 +18,9 @@
     <p>LENGTH: <%= movie.length + ' min'%> </p>
     <p>RELEASE DATE: <%= movie.release_date %> </p>
 
+    <form action="/movies/delete/<%= movie.id %>" METHOD="POST" >
+        <button>Eliminar</button> 
+    </form>
+
 </body>
 </html>
