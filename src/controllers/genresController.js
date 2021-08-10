@@ -9,7 +9,7 @@ const genresController = {
         db.Genre.findAll(
             {
                 include: [
-                    {  as: 'movies', attributes: ['title'] }
+                    { model: db.Movie, as: 'movies', attributes: ['title'] }
                   ]
             }
         )
