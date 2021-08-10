@@ -20,13 +20,43 @@ module.exports = (sequelize, dataTypes) => {
         },
         release_date: {
             type: dataTypes.DATE
+        },
+        genre_id: {
+            type: dataTypes.INTEGER,
         }
     };
     let config = {
         tableName: 'movies',
         timestamps: false
     };
-    const Movie = sequelize.define(alias, cols, config)
+    const Movie = sequelize.define(alias, cols, config);
+
+    // Relaciones de SQL == Asociaciones en sequelize
+
+    Movie.associate = function(models) {
+
+        Movie.belongsTo(
+            models.Genre, 
+            {
+                foreignKey: 'genre_id',
+                as: 'genre'
+            }
+        );
+
+        // movie.genre() == datos del genero que tiene esa movie
+
+        Movie.belongsToMany(
+            models.Actor, 
+            {
+                through: 'actor_movie',
+                otherKey: 'actor_id',
+                foreignKey: 'movie_id',
+                as: 'actors',
+                timestamps: false
+            }
+        );
+
+    }
 
     return Movie
 }
